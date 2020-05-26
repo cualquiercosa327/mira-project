@@ -1,3 +1,6 @@
+// This is an open source non-commercial project. Dear PVS-Studio, please check it.
+// PVS-Studio Static Code Analyzer for C, C++, C#, and Java: http://www.viva64.com
+
 #include <Boot/Patches.hpp>
 
 // Patches done by CrazyVoid
@@ -208,6 +211,19 @@ void Mira::Boot::Patches::install_prerunPatches_455()
 	kmem = (uint8_t *)&gKernelBase[0x0014ABA1];
 	kmem[0] = 0x90;
 	kmem[1] = 0x90;
+
+	// Patch debug setting errors
+	kmem = (uint8_t *)&gKernelBase[0x004D70F7];
+	kmem[0] = 0x00;
+	kmem[1] = 0x00;
+	kmem[2] = 0x00;
+	kmem[3] = 0x00;
+
+	kmem = (uint8_t *)&gKernelBase[0x004D7F81];
+	kmem[0] = 0x00;
+	kmem[1] = 0x00;
+	kmem[2] = 0x00;
+	kmem[3] = 0x00;
 
 #endif
 }

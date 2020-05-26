@@ -1,3 +1,6 @@
+// This is an open source non-commercial project. Dear PVS-Studio, please check it.
+// PVS-Studio Static Code Analyzer for C, C++, C#, and Java: http://www.viva64.com
+
 #include <Boot/Patches.hpp>
 
 /*
@@ -181,7 +184,7 @@ void Mira::Boot::Patches::install_prerunPatches_503()
 	kmem[2] = 0x90;
 	kmem[3] = 0x90;
 	kmem[4] = 0x90;
-	kmem[5] = 0x90;	
+	kmem[5] = 0x90;
 
 	// Enable mount for unprivileged user
 	kmem = (uint8_t *)&gKernelBase[0x001DEAEE];
@@ -202,6 +205,19 @@ void Mira::Boot::Patches::install_prerunPatches_503()
 	kmem = (uint8_t *)&gKernelBase[0x001EA9E1];
 	kmem[0] = 0x90;
 	kmem[1] = 0x90;
+
+	// Patch debug setting errors
+	kmem = (uint8_t *)&gKernelBase[0x004F9008];
+	kmem[0] = 0x00;
+	kmem[1] = 0x00;
+	kmem[2] = 0x00;
+	kmem[3] = 0x00;
+
+	kmem = (uint8_t *)&gKernelBase[0x004FA11C];
+	kmem[0] = 0x00;
+	kmem[1] = 0x00;
+	kmem[2] = 0x00;
+	kmem[3] = 0x00;
 
 #endif
 }
